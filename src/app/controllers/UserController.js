@@ -1,12 +1,10 @@
 import User from '../models/User';
-import MailQueue from '../../queue/mailer';
-import SendMail from '../../mail/send';
+import QueueProcess from '../../queue/config';
 class UserController {
     async store(req,res) {
         const {name, email, password} = req.body;
-        MailQueue.process(async (job) => {
-            await SendMail();
-        })
+        const job = QueueProcess.createJob({x: 2, y: 3});
+        job.save();
         const user = await User.query().insertGraph({
             name,
             email,

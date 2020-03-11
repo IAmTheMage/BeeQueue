@@ -1,13 +1,18 @@
 import transport from './config';
-
-async function sendMail() {
+import html from './simpleview';
+async function sendMail(
+    From = "gustavosjn2013@gmail.com 👻", 
+    To = "gustavosjn2013@gmail.com",
+    Subject = "Hello ✔",
+    Text = "You queue is open",
+    ) {
     await transport.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: "bar@example.com, baz@example.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>" // h
+        from: From, // sender address
+        to: To, // list of receivers
+        subject: Subject, // Subject line
+        text: Text, // plain text body
+        html: html // h
     })
 }
 
-sendMail();
+export default sendMail;
